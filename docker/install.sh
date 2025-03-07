@@ -18,7 +18,7 @@ echo ' |  _ < (_| | |_| | | |_) | | | | | | (_) | (_) | | '
 echo ' |_| \_\__,_|\__, | |____/|_|_|_| |_|\___/ \___/|_| '
 echo '             |___/                                  '
 
-githubProxy="https://ghproxy.com/"
+githubProxy=""
 
 infFileName="ray-inf.sh"
 [ -f $infFileName ] || {
@@ -97,6 +97,8 @@ runContainer() {
             -v $base_dir/Logs:/app/Logs \
             -v $base_dir/appsettings.json:/app/appsettings.json \
             -v $base_dir/cookies.json:/app/cookies.json \
+            -e Ray_Serilog__WriteTo__3__Args__botToken=7875082413:AAEtVCpJ6AOPee-fqu5lpRdvhhQCQGXXyb8 \
+            -e Ray_DailyTaskConfig__NumberOfCoins=0 \
             $docker_img_name
     } || {
         say_err "创建容器失败，请检查"
